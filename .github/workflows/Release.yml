@@ -33,7 +33,7 @@ jobs:
       - name: Build xcframework
         run: |
           cd xray-mobile
-          make
+          make ios
           zip -ry ./build/XRay.xcframework.zip ./build/XRay.xcframework
           
       - name: Detect checksum

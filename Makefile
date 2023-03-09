@@ -8,7 +8,7 @@ IOS_VERSION=12.0
 ANDROID_TARGET=android
 # LDFLAGS='-s -w -X google.golang.org/protobuf/reflect/protoregistry.conflictPolicy=warn'
 LDFLAGS='-s -w -extldflags -lresolv'
-IMPORT_PATH=github.com/EbrahimTahernejad/t2s-xray
+IMPORT_PATH=github.com/EbrahimTahernejad/xray-mobile
 
 BUILD_IOS="cd $(BUILDDIR) && $(GOBIND) -a -ldflags $(LDFLAGS) -target=$(IOS_TARGET) -iosversion=$(IOS_VERSION) -o $(IOS_ARTIFACT) $(IMPORT_PATH)"
 BUILD_ANDROID="cd $(BUILDDIR) && $(GOBIND) -a -ldflags $(LDFLAGS) -target=$(ANDROID_TARGET) -tags=gomobile -o $(ANDROID_ARTIFACT) $(IMPORT_PATH)"

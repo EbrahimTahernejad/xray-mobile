@@ -32,13 +32,13 @@ jobs:
           
       - name: Build xcframework
         run: |
-          cd xray
+          cd xray-mobile
           make
           zip -ry ./build/XRay.xcframework.zip ./build/XRay.xcframework
           
       - name: Detect checksum
         run: |
-          export TEMP=`shasum -a 256 xray-mobile/build/XrayKit.xcframework.zip`
+          export TEMP=`shasum -a 256 xray-mobile/build/XRay.xcframework.zip`
           export CHECKSUM=${TEMP:0:64}
           echo "FILE_CHECKSUM=${CHECKSUM}" >> $GITHUB_ENV
           unset CHECKSUM
@@ -52,7 +52,7 @@ jobs:
           echo "" >> Package.swift
           echo "let package = Package(" >> Package.swift
           echo "  name: \"XRay\"," >> Package.swift
-          echo "  platforms: [.iOS(.v12)]" >> Package.swift
+          echo "  platforms: [.iOS(.v12)]," >> Package.swift
           echo "  products: [" >> Package.swift
           echo "    .library(name: \"XRay\", targets: [\"XRay\"])" >> Package.swift
           echo "  ]," >> Package.swift

@@ -2,6 +2,7 @@ package XRay
 
 import (
 	"bytes"
+	"runtime/debug"
 
 	_ "github.com/xtls/xray-core/main/distro/all"
 
@@ -14,6 +15,11 @@ type Logger interface {
 }
 
 var coreInstance *core.Instance
+
+func SetMemoryLimit() {
+	debug.SetGCPercent(10)
+	debug.SetMemoryLimit(30 * 1024 * 1024)
+}
 
 func Start(config []byte, logger Logger) error {
 	conf, err := serial.DecodeJSONConfig(bytes.NewReader(config))
